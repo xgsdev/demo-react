@@ -1,0 +1,17 @@
+####{BSB GENERATED: NO EDIT
+FLG -ppx '/home/ubuntu/playground/reasonmlApp/reason-react/node_modules/bs-platform/bin/reactjs_jsx_ppx_2.exe'
+FLG -ppx /home/ubuntu/playground/reasonmlApp/reason-react/node_modules/bs-platform/bin/bsppx.exe
+S /home/ubuntu/playground/reasonmlApp/reason-react/node_modules/bs-platform/lib/ocaml
+B /home/ubuntu/playground/reasonmlApp/reason-react/node_modules/bs-platform/lib/ocaml
+FLG -nostdlib -no-alias-deps -color always -w -40+6+7+27+32..39+44+45
+S /home/ubuntu/playground/reasonmlApp/reason-react/node_modules/reason-react/lib/ocaml
+B /home/ubuntu/playground/reasonmlApp/reason-react/node_modules/reason-react/lib/ocaml
+S /home/ubuntu/playground/reasonmlApp/reason-react/node_modules/bs-director/lib/ocaml
+B /home/ubuntu/playground/reasonmlApp/reason-react/node_modules/bs-director/lib/ocaml
+S /home/ubuntu/playground/reasonmlApp/reason-react/node_modules/bs-fetch/lib/ocaml
+B /home/ubuntu/playground/reasonmlApp/reason-react/node_modules/bs-fetch/lib/ocaml
+S /home/ubuntu/playground/reasonmlApp/reason-react/node_modules/bs-json/lib/ocaml
+B /home/ubuntu/playground/reasonmlApp/reason-react/node_modules/bs-json/lib/ocaml
+S src
+B lib/bs/src
+####BSB GENERATED: NO EDIT}

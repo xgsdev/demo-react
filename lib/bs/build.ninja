@@ -1,0 +1,64 @@
+bs_package_flags = -bs-package-name create-reason-react-app
+src_root_dir = /home/ubuntu/playground/reasonmlApp/reason-react
+bsc = /home/ubuntu/playground/reasonmlApp/reason-react/node_modules/bs-platform/bin/bsc.exe
+bsdep = /home/ubuntu/playground/reasonmlApp/reason-react/node_modules/bs-platform/bin/bsb_helper.exe
+bsc_flags = -nostdlib -I '/home/ubuntu/playground/reasonmlApp/reason-react/node_modules/bs-platform/lib/ocaml' -no-alias-deps -color always -w -40+6+7+27+32..39+44+45
+ppx_flags = 
+bs_package_includes = -I /home/ubuntu/playground/reasonmlApp/reason-react/node_modules/reason-react/lib/ocaml -I /home/ubuntu/playground/reasonmlApp/reason-react/node_modules/bs-director/lib/ocaml -I /home/ubuntu/playground/reasonmlApp/reason-react/node_modules/bs-fetch/lib/ocaml -I /home/ubuntu/playground/reasonmlApp/reason-react/node_modules/bs-json/lib/ocaml
+bs_package_dev_includes = 
+refmt = /home/ubuntu/playground/reasonmlApp/reason-react/node_modules/bs-platform/bin/refmt.exe
+reason_react_jsx = -ppx '/home/ubuntu/playground/reasonmlApp/reason-react/node_modules/bs-platform/bin/reactjs_jsx_ppx_2.exe'
+refmt_flags = --print binary
+bsb_dir_group = 0
+bsc_lib_includes = -I src
+rule build_ast_and_deps_from_reason_impl
+  command = ${bsc} -pp "${refmt} ${refmt_flags}" ${reason_react_jsx}  ${ppx_flags} ${bsc_flags} -c -o ${out} -bs-syntax-only -bs-binary-ast -impl ${in}
+  description = [34mBuilding[39m [2m${out}[22m
+build src/app.mlast : build_ast_and_deps_from_reason_impl $src_root_dir/src/app.re
+rule build_deps
+  command = ${bsdep} -g ${bsb_dir_group} -MD ${in}
+  description = [34mBuilding[39m [2m${out}[22m
+build src/app.mlast.d : build_deps src/app.mlast
+rule build_cmj_cmi
+  command = ${bsc} ${bs_package_flags} -bs-assume-no-mli -bs-no-builtin-ppx-ml -bs-no-implicit-include ${bs_package_includes} ${bsc_lib_includes} ${bsc_extra_includes} ${bsc_flags} -o ${in} -c  ${in} ${postbuild}
+  depfile = ${in}.d
+  description = [34mBuilding[39m [2m${out}[22m
+build src/app.cmj $src_root_dir/lib/js/src/app.js src/app.cmi : build_cmj_cmi src/app.mlast
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:lib/js/src
+build src/index.mlast : build_ast_and_deps_from_reason_impl $src_root_dir/src/index.re
+build src/index.mlast.d : build_deps src/index.mlast
+build src/index.cmj $src_root_dir/lib/js/src/index.js src/index.cmi : build_cmj_cmi src/index.mlast
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:lib/js/src
+build src/RepoData.mlast : build_ast_and_deps_from_reason_impl $src_root_dir/src/RepoData.re
+build src/RepoData.mlast.d : build_deps src/RepoData.mlast
+build src/RepoData.cmj $src_root_dir/lib/js/src/RepoData.js src/RepoData.cmi : build_cmj_cmi src/RepoData.mlast
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:lib/js/src
+build src/RepoItem.mlast : build_ast_and_deps_from_reason_impl $src_root_dir/src/RepoItem.re
+build src/RepoItem.mlast.d : build_deps src/RepoItem.mlast
+build src/RepoItem.cmj $src_root_dir/lib/js/src/RepoItem.js src/RepoItem.cmi : build_cmj_cmi src/RepoItem.mlast
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:lib/js/src
+build src/template.mlast : build_ast_and_deps_from_reason_impl $src_root_dir/src/template.re
+build src/template.mlast.d : build_deps src/template.mlast
+build src/template.cmj $src_root_dir/lib/js/src/template.js src/template.cmi : build_cmj_cmi src/template.mlast
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:lib/js/src
+build src/HeaderSub.mlast : build_ast_and_deps_from_reason_impl $src_root_dir/src/HeaderSub.re
+build src/HeaderSub.mlast.d : build_deps src/HeaderSub.mlast
+build src/HeaderSub.cmj $src_root_dir/lib/js/src/HeaderSub.js src/HeaderSub.cmi : build_cmj_cmi src/HeaderSub.mlast
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:lib/js/src
+build src/MainTable.mlast : build_ast_and_deps_from_reason_impl $src_root_dir/src/MainTable.re
+build src/MainTable.mlast.d : build_deps src/MainTable.mlast
+build src/MainTable.cmj $src_root_dir/lib/js/src/MainTable.js src/MainTable.cmi : build_cmj_cmi src/MainTable.mlast
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:lib/js/src
+build src/FooterItem.mlast : build_ast_and_deps_from_reason_impl $src_root_dir/src/FooterItem.re
+build src/FooterItem.mlast.d : build_deps src/FooterItem.mlast
+build src/FooterItem.cmj $src_root_dir/lib/js/src/FooterItem.js src/FooterItem.cmi : build_cmj_cmi src/FooterItem.mlast
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:lib/js/src
+build src/HeaderItem.mlast : build_ast_and_deps_from_reason_impl $src_root_dir/src/HeaderItem.re
+build src/HeaderItem.mlast.d : build_deps src/HeaderItem.mlast
+build src/HeaderItem.cmj $src_root_dir/lib/js/src/HeaderItem.js src/HeaderItem.cmi : build_cmj_cmi src/HeaderItem.mlast
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:lib/js/src
+build src/SearchItem.mlast : build_ast_and_deps_from_reason_impl $src_root_dir/src/SearchItem.re
+build src/SearchItem.mlast.d : build_deps src/SearchItem.mlast
+build src/SearchItem.cmj $src_root_dir/lib/js/src/SearchItem.js src/SearchItem.cmi : build_cmj_cmi src/SearchItem.mlast
+  bs_package_flags = $bs_package_flags  -bs-package-output commonjs:lib/js/src
+build build.ninja : phony  ||  src/SearchItem.mlast.d src/HeaderItem.mlast.d src/FooterItem.mlast.d src/MainTable.mlast.d src/HeaderSub.mlast.d src/template.mlast.d src/RepoItem.mlast.d src/RepoData.mlast.d src/index.mlast.d src/app.mlast.d
